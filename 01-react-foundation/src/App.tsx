@@ -1,10 +1,11 @@
-import './App.css'
+import { BasicsTypes } from "./typescript"
 
 function App() {
 
   return (
     <main>
-      <h1>Introduction to React</h1>
+      <h1>Introducción a TS - React</h1>
+      <BasicsTypes />
     </main>
   )
 }
