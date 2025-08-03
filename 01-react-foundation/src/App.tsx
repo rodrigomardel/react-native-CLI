@@ -1,3 +1,4 @@
+import { Counter } from "./components"
 import { BasicFunctions, BasicsTypes, ObjectLiterals } from "./typescript"
 
 function App() {
@@ -8,6 +9,7 @@ function App() {
       <BasicsTypes />
       <ObjectLiterals />
       <BasicFunctions />
+      <Counter />
     </main>
   )
 }
