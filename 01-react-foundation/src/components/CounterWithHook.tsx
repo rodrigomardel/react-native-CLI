@@ -1,5 +1,10 @@
 import { useCounter } from "../hooks/useCounter";
 
+
+/**
+ * Componente que muestra un contador con un hook personalizado
+ * @returns Componente que muestra un contador con un hook personalizado
+ */
 export const CounterWithHook = () => {
 
   const { count, increaseBy } = useCounter({});

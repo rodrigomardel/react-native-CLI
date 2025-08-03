@@ -1,5 +1,9 @@
 import { useState } from "react"
 
+/**
+ * Componente que muestra un contador con useState
+ * @returns Componente que muestra un contador con useState
+ */
 export const Counter = () => {
 
   const [count, setCount] = useState<number>(10);

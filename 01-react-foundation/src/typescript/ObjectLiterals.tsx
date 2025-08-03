@@ -1,3 +1,6 @@
+/**
+ * Interfaz para la persona
+ */ 
 interface Person {
   firstName: string;
   lastName: string;
@@ -7,14 +10,19 @@ interface Person {
   isAlive?: boolean;
 }
 
+/**
+ * Interfaz para la dirección
+ */
 interface Address {
   country: string;
   houseNumber: number;
 }
 
 
-
-
+/**
+ * Componente que muestra un objeto literal
+ * @returns Componente que muestra un objeto literal
+ */
 export const ObjectLiterals = () => {
   
   const person: Person = {
