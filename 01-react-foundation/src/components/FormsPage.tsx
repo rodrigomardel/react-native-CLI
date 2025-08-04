@@ -6,30 +6,38 @@ type FormInputs = {
 }
 
 /**
- * Componente de formulario usando react-hook-form
- * 
- * @returns Formulario con campos de nombre y email
- * - Valores por defecto: Rodrigo / rodrigo@gmail.com
- * - Usa react-hook-form para gestión de estado
+ * Formulario con react-hook-form
+ * @returns Formulario con validación y estado en tiempo real
  */
 export const FormsPage = () => {
 
-  const { register } = useForm<FormInputs>({
+  const { register, handleSubmit, formState, watch } = useForm<FormInputs>({
     defaultValues: {
       name: 'Rodrigo',
       email: 'rodrigo@gmail.com'
     }
   });
+
+  const onSubmit = (myForm: FormInputs) => {
+    console.log(myForm);
+  }
+
+  console.log(watch('name'));
+
   return (
     <>
-      <form>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <h3>Formulario</h3>
         <div style={{display: 'flex', flexDirection: 'column', gap: 10}}>
-          <input type="text" placeholder="Nombre" {...register('name')} /> 
-          <input type="text" placeholder="Email" {...register('email')} />
+          <input type="text" placeholder="Nombre" {...register('name', { required: true})} /> 
+          <input type="text" placeholder="Email" {...register('email', { required: true, pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/ })} />
           <button type="submit">Enviar</button>
         </div>
       </form>
+
+      <pre>
+        {JSON.stringify(formState, null, 2)}
+      </pre>
     </>
   )
 }
