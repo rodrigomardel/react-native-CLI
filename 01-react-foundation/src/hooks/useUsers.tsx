@@ -3,31 +3,32 @@ import type { ReqResUserResponse, User } from "../interfaces";
 import { useEffect, useRef, useState } from "react";
 
 /**
- * Carga usuarios desde la API de ReqRes
- * @param {number} page - Número de página a cargar (por defecto: 1)
- * @returns Promise<User[]> - Array de usuarios o array vacío si hay error
+ * Obtiene usuarios de la API de ReqRes
+ * @param page - Número de página (default: 1)
+ * @returns Array de usuarios o array vacío si hay error
  */
 const loadUsers = async (page: number = 1): Promise<User[]> => {
   try {
-    // Realiza petición GET a la API de ReqRes para obtener usuarios
     const {data} = await axios.get<ReqResUserResponse>('https://reqres.in/api/users', {
-      params: {
-        page: page
-      },
-      headers: {
-        'x-api-key': 'reqres-free-v1'
-      }
+      params: { page },
+      headers: { 'x-api-key': 'reqres-free-v1' }
     });
     return data.data;
-
   } catch (error) {
     console.log(error);
     return [];
   }
 }
 
+/**
+ * Hook personalizado para gestionar usuarios con paginación
+ * 
+ * @returns {Object} Objeto con:
+ * - users: Array de usuarios actuales
+ * - nextPage: Función para ir a la siguiente página
+ * - previousPage: Función para ir a la página anterior
+ */
 export const useUsers = () => {
-
   const [users, setUsers] = useState<User[]>([]);
   const currentPageRef = useRef(1);
 
@@ -38,11 +39,8 @@ export const useUsers = () => {
   }, [])
 
   /**
-   * Navega a la siguiente página de usuarios
-   * @description
-   * - Incrementa el contador de página
-   * - Carga los usuarios de la nueva página
-   * - Si no hay usuarios, revierte el contador
+   * Avanza a la siguiente página
+   * Revierte si no hay usuarios en la nueva página
    */
   const nextPage = async() => {
     currentPageRef.current++;
@@ -55,11 +53,8 @@ export const useUsers = () => {
   }
 
   /**
-   * Navega a la página anterior de usuarios
-   * @description
-   * - Valida que no estemos en la página 1 o menor
-   * - Decrementa el contador de página
-   * - Carga los usuarios de la página anterior
+   * Retrocede a la página anterior
+   * No permite ir a página 0 o menor
    */
   const previousPage = async () => {
     if (currentPageRef.current < 1) return;
