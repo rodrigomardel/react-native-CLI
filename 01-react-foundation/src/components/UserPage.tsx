@@ -1,12 +1,12 @@
 import axios from "axios"
-import { useEffect } from "react"
-import type { ReqResUserResponse } from "../interfaces"
+import { useEffect, useState } from "react"
+import type { ReqResUserResponse, User } from "../interfaces"
 
 /**
  * Carga usuarios desde la API de ReqRes
  * @returns Promise<Array> - Array de usuarios o array vacío si hay error
  */
-const loadUsers = async () => {
+const loadUsers = async (): Promise<User[]> => {
   try {
     // Realiza petición GET a la API de ReqRes para obtener usuarios
     const {data} = await axios.get<ReqResUserResponse>('https://reqres.in/api/users', {
@@ -36,23 +36,17 @@ const loadUsers = async () => {
  */
 export const UserPage = () => {
 
+  const [users, setUsers] = useState<User[]>([]);
+
   useEffect(() => {
-    // Código comentado: ejemplo de petición con parámetros de página
-    // axios.get<ReqResUserResponse>('https://reqres.in/api/users?page=2', {
-    //   headers: {
-    //     'x-api-key': 'reqres-free-v1'
-    //   }
-    // })
-    //   .then(resp => console.log(resp.data.data[0]));
-    
     // Carga usuarios al montar el componente
-    loadUsers().then(users => console.log(users));
+    loadUsers()
+      .then(users => setUsers(users)); //setUsers(users) -> sintaxis reducida para actualizar el estado
   }, [])
 
     return (
         <div>
             <h3>Usuarios:</h3>
-            {/* Tabla para mostrar información de usuarios */}
             <table>
               <thead>
                 <tr>
@@ -62,14 +56,40 @@ export const UserPage = () => {
                 </tr>
               </thead>
               <tbody>
-                {/* TODO: Renderizar usuarios dinámicamente desde el estado */}
-                <tr>
-                  <td>avatar</td>
-                  <td>nombre</td>
-                  <td>email</td>
-                </tr>
+                {
+                users.map((user: User) => (
+                  <UserRow key={user.id} user={user} />
+                ))
+                }
               </tbody>
             </table>
         </div>
     )
+}
+
+/**
+ * Interfaz para las propiedades del componente UserRow
+ * @interface UserRowProps
+ * @property {User} user - Usuario a mostrar
+ */
+interface UserRowProps {
+  user: User;
+}
+
+/**
+ * Componente que muestra una fila de usuario en la tabla
+ * @param {UserRowProps} props - Propiedades del componente
+ * @returns {JSX.Element} - Fila de usuario
+ */
+export const UserRow = ({user}: UserRowProps) => {
+
+  const {id, avatar, first_name, last_name, email} = user;
+
+  return (
+    <tr key={id}>
+      <td><img style={{width: 50, borderRadius: 100}} src={avatar} alt="User Avatar" /></td>
+      <td>{first_name} {last_name}</td>
+      <td>{email}</td>
+    </tr>
+  )
 }
