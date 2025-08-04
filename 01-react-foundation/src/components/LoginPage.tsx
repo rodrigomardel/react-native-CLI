@@ -6,26 +6,6 @@ import { useEffect } from "react";
  * 
  * Este componente demuestra el uso del store de autenticación (useAuthStore)
  * y proporciona una interfaz para que los usuarios puedan iniciar y cerrar sesión.
- * 
- * Características:
- * - Muestra el estado actual de autenticación
- * - Permite iniciar sesión con credenciales de prueba
- * - Permite cerrar sesión
- * - Incluye un efecto automático que cierra sesión después de 1.5 segundos (para demostración)
- * 
- * @example
- * ```tsx
- * // Usar el componente en la aplicación
- * import { LoginPage } from './components/LoginPage';
- * 
- * function App() {
- *   return (
- *     <div>
- *       <LoginPage />
- *     </div>
- *   );
- * }
- * ```
  */
 export const LoginPage = () => {
     // Extraer estado y funciones del store de autenticación
@@ -50,9 +30,7 @@ export const LoginPage = () => {
         return () => clearTimeout(timer);
     }, [logout]);
 
-    /**
-     * Renderiza el estado de carga mientras se verifica la autenticación
-     */
+    // Renderiza el estado de carga mientras se verifica la autenticación
     if (authStatus === 'checking') {
         return (
             <div className="login-page">
@@ -65,7 +43,6 @@ export const LoginPage = () => {
         <div className="login-page">
             <h3>Login Page</h3>
             
-            {/* Mostrar información del estado de autenticación */}
             {authStatus === 'authenticated' ? (
                 <div>
                     <h4>✅ Usuario Autenticado</h4>
@@ -78,7 +55,6 @@ export const LoginPage = () => {
                 </div>
             )}
 
-            {/* Botones de acción según el estado de autenticación */}
             {authStatus === 'authenticated' ? (
                 <button 
                     onClick={logout}
