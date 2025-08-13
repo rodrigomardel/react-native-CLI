@@ -1,10 +1,14 @@
 import React from 'react';
 import { Text, View, StyleSheet } from 'react-native';
 
-export const HelloWorldScreen = () => {
+interface Props {
+  name?: string;
+}
+
+export const HelloWorldScreen = ({ name = 'World' }: Props) => {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Hello World</Text>
+      <Text numberOfLines={1} ellipsizeMode='tail' style={styles.title}>Hello, {name}</Text>
     </View>
   );
 };
@@ -18,7 +22,7 @@ const styles = StyleSheet.create({
   },
   title: {
     color: 'white',
-    fontSize: 20,
+    fontSize: 40,
     fontWeight: 'bold',
   },
 });
