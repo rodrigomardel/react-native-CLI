@@ -9,7 +9,7 @@ interface Props {
 export const HelloWorldScreen = ({ name = 'World' }: Props) => {
   return (
     <View style={commonStyles.container}>
-      <Text numberOfLines={1} ellipsizeMode='tail' style={commonStyles.title}>Hello, {name}</Text>
+      <Text numberOfLines={1} ellipsizeMode="tail" style={commonStyles.title}>Hello, {name}</Text>
     </View>
   );
 };
