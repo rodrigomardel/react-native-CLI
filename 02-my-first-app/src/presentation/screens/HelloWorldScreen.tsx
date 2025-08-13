@@ -1,5 +1,6 @@
 import React from 'react';
-import { Text, View, StyleSheet } from 'react-native';
+import { Text, View } from 'react-native';
+import { commonStyles } from '../../styles';
 
 interface Props {
   name?: string;
@@ -7,22 +8,8 @@ interface Props {
 
 export const HelloWorldScreen = ({ name = 'World' }: Props) => {
   return (
-    <View style={styles.container}>
-      <Text numberOfLines={1} ellipsizeMode='tail' style={styles.title}>Hello, {name}</Text>
+    <View style={commonStyles.container}>
+      <Text numberOfLines={1} ellipsizeMode='tail' style={commonStyles.title}>Hello, {name}</Text>
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'grey',
-  },
-  title: {
-    color: 'white',
-    fontSize: 40,
-    fontWeight: 'bold',
-  },
-});
