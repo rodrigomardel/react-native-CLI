@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, Pressable, Platform } from 'react-native';
-import { commonStyles } from '../../styles';
+import { commonStyles } from '../../themes';
 import { PrimaryButton } from '../components';
 
 export const CounterScreen = () => {

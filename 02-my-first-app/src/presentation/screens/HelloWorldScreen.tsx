@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text, View } from 'react-native';
-import { commonStyles } from '../../styles';
+import { commonStyles } from '../../themes';
 
 interface Props {
   name?: string;
