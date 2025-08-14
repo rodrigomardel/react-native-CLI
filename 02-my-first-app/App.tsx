@@ -1,12 +1,12 @@
 import { SafeAreaView } from 'react-native';
-import { HelloWorldScreen } from './src/presentation/screens/HelloWorldScreen';
-import { CounterScreen } from './src/presentation/screens/CounterScreen';
+import { CounterScreen, HelloWorldScreen, BoxObjectModelScreen } from './src/presentation/screens';
 
 export const App = () => {
   return (
       <SafeAreaView style={{ flex: 1 }}>
         {/* <HelloWorldScreen name='Rodrigo Martínez Delgado' /> */}
-        <CounterScreen />
+        {/* <CounterScreen /> */}
+        <BoxObjectModelScreen />
       </SafeAreaView>
   );
 };
