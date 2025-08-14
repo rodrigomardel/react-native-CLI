@@ -1,5 +1,5 @@
 import { SafeAreaView } from 'react-native';
-import { CounterScreen, HelloWorldScreen, BoxObjectModelScreen, DimensionScreen } from './src/presentation/screens';
+import { CounterScreen, HelloWorldScreen, BoxObjectModelScreen, DimensionScreen, PositionScreen } from './src/presentation/screens';
 
 export const App = () => {
   return (
@@ -7,7 +7,8 @@ export const App = () => {
         {/* <HelloWorldScreen name='Rodrigo Martínez Delgado' /> */}
         {/* <CounterScreen /> */}
         {/* <BoxObjectModelScreen /> */}
-        <DimensionScreen />
+        {/* <DimensionScreen /> */}
+        <PositionScreen />
       </SafeAreaView>
   );
 };
