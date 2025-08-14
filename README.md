@@ -1,4 +1,4 @@
-# React Native CLI - Proyectos de Aprendizaje
+# React Native CLI
 
 ## 📁 Proyectos
 
