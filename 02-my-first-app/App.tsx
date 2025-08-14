@@ -4,9 +4,9 @@ import { CounterScreen } from './src/presentation/screens/CounterScreen';
 
 export const App = () => {
   return (
-    <SafeAreaView style={{ flex: 1 }}>
-      {/* <HelloWorldScreen name='Rodrigo Martínez Delgado' /> */}
-      <CounterScreen />
-    </SafeAreaView>
+      <SafeAreaView style={{ flex: 1 }}>
+        {/* <HelloWorldScreen name='Rodrigo Martínez Delgado' /> */}
+        <CounterScreen />
+      </SafeAreaView>
   );
 };

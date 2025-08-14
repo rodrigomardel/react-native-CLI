@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet, Pressable, Platform } from 'react-native';
 import { commonStyles } from '../../themes';
 import { PrimaryButton } from '../components';
+import { FontAwesome6 } from '@react-native-vector-icons/fontawesome6';
+
 
 export const CounterScreen = () => {
   const [counter, setCounter] = useState(0);
@@ -12,13 +14,15 @@ export const CounterScreen = () => {
   };
 
   return (
+    <>
     <View style={commonStyles.container}>
       <Text style={commonStyles.title}>{counter}</Text>
       <PrimaryButton
-        label="Incrementar"
+        label='Incrementar'
         onPress={increment}
         onLongPress={() => setCounter(0)}
       />
+    <FontAwesome6 name="comments" size={50} color="#900" />
 
       {/*
       // Ejemplo de cómo se hace con Pressable
@@ -32,9 +36,13 @@ export const CounterScreen = () => {
       >
         <Text style={localStyles.buttonText}>Incrementar</Text>
       </Pressable> */}
+
     </View>
+    </>
   );
 };
+
+
 const localStyles = StyleSheet.create({
   button: {
     backgroundColor: Platform.OS === 'ios' ? 'white' : '#5856d6',
