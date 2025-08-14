@@ -10,6 +10,10 @@
     "test": "jest"
   },
   "dependencies": {
+    "@hapi/hoek": "^11.0.7",
+    "@react-native-vector-icons/evil-icons": "^12.3.0",
+    "@react-native-vector-icons/fontawesome6": "^12.2.0",
+    "@react-native-vector-icons/material-design-icons": "^12.3.0",
     "react": "18.3.1",
     "react-native": "0.76.7"
   },
@@ -32,6 +36,9 @@
     "prettier": "2.8.8",
     "react-test-renderer": "18.3.1",
     "typescript": "5.0.4"
+  },
+  "reactNativeVectorIcons": {
+    "fontDir": "rnvi-fonts"
   },
   "engines": {
     "node": ">=18"
