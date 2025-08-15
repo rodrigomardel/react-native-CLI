@@ -7,13 +7,13 @@ export const colors = {
  
   textPrimary: '#FFFFFF',
   textSecondary: '#71717A',
-  background: '#000000',
+  backgroundDark: '#000000',
 }
 
 export const styles = StyleSheet.create({
   background: {
     flex: 1,
-    backgroundColor: colors.background,
+    backgroundColor: colors.backgroundDark,
   },
   calculatorContainer: {
     flex: 1,
