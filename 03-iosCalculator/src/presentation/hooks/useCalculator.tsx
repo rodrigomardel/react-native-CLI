@@ -4,6 +4,34 @@ export const useCalculator = () => {
 
   const [number, setNumber] = useState('0')
 
+  const clean = () => {
+    setNumber('0');
+  };
+
+  const deleteLastNumber = () => {
+    let currentSign = '';
+    let temporalNumber = number;
+
+    if ( number.includes( '-' ) ) {
+      currentSign = '-';
+      temporalNumber = number.substring( 1 ); // 88
+    }
+
+    if ( temporalNumber.length > 1 ) {
+      return setNumber( currentSign + temporalNumber.slice( 0, -1 ) ); // 
+    }
+
+    setNumber( '0' );
+  };
+
+  const toggleSign = () => {
+    if ( number.includes( '-' ) ) {
+      return setNumber( number.replace( '-', '' ) );
+    }
+
+    setNumber( '-' + number );
+  };
+
   const buildNumber = ( numberString: string ) => {
 
     if ( number.includes( '.' ) && numberString === '.' ) return;
@@ -34,15 +62,15 @@ export const useCalculator = () => {
     }
 
     setNumber( number + numberString );
-
-    
-    
   };
+
   return {
     // Properties
     number,
-
     // Methods
     buildNumber,
+    clean,
+    deleteLastNumber,
+    toggleSign,
   };
 }

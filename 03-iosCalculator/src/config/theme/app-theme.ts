@@ -27,7 +27,7 @@ export const styles = StyleSheet.create({
     color: colors.textSecondary,
   },
   mainResult: {
-    fontSize: 44,
+    fontSize: 60,
     color: colors.textPrimary,
     fontWeight: '300',
     textAlign: 'right',
