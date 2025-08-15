@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
     right: 0,
   },
   greenBox: {
-    backgroundColor: 'green',
+    backgroundColor: 'darkgreen',
     // width: 100,
     // height: 100,
     borderWidth: 10,
