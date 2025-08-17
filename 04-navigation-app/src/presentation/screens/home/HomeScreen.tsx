@@ -1,9 +1,10 @@
 import { View, Text, Pressable } from 'react-native'
 import React from 'react'
-import { useNavigation } from '@react-navigation/native';
+import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { globalStyles } from '../../theme/theme';
 import { PrimaryButton } from '../../components/shared/PrimaryButton';
+import { RootStackParams } from '../../routes/StackNavigator';
 
 type RootStackParamList = {
   Home: undefined;
@@ -11,10 +12,8 @@ type RootStackParamList = {
   Products: undefined;
 };
 
-type HomeScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Home'>;
-
 export const HomeScreen = () => {
-  const navigation = useNavigation<HomeScreenNavigationProp>();
+  const navigation = useNavigation<NavigationProp<RootStackParams>>();
 
   return (
     <View style={globalStyles.container}>

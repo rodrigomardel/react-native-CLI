@@ -6,7 +6,16 @@ import { globalColors } from '../theme/theme';
 import { ProductScreen } from '../screens/products/ProductScreen';
 import { SettingsScreen } from '../screens/settings/SettingsScreen';
 
-const Stack = createStackNavigator();
+
+export type RootStackParams = {
+  Home: undefined;
+  Profile: undefined;
+  Products: undefined;
+  Product: {id:number, name:string};
+  Settings: undefined;
+}
+
+const Stack = createStackNavigator<RootStackParams>();
 
 export const MyStack = () => {
   return (
