@@ -9,6 +9,7 @@ export const globalColors = {
   danger: '#D32F2F',
   dark: '#000000',
   background: '#FFFFFF',
+  text: '#000000',
   };
 
 

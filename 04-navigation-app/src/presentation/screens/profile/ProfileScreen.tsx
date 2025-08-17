@@ -2,6 +2,8 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
+import { globalStyles } from '../../theme/theme';
+import { PrimaryButton } from '../../components';
 
 type RootStackParamList = {
   Home: undefined;
@@ -14,47 +16,13 @@ export const ProfileScreen = () => {
   const navigation = useNavigation<ProfileScreenNavigationProp>();
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>ProfileScreen</Text>
-      <Text style={styles.subtitle}>Esta es tu pantalla de perfil</Text>
+    <View style={globalStyles.container}>
+      <Text style={globalStyles.title}>ProfileScreen</Text>
       
-      <TouchableOpacity 
-        style={styles.button}
+      <PrimaryButton 
+        label='Volver al Home'
         onPress={() => navigation.goBack()}
-      >
-        <Text style={styles.buttonText}>Volver al Home</Text>
-      </TouchableOpacity>
+      />
     </View>
   )
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#e8f4fd',
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 10,
-    color: '#333',
-  },
-  subtitle: {
-    fontSize: 16,
-    color: '#666',
-    marginBottom: 30,
-  },
-  button: {
-    backgroundColor: '#34C759',
-    paddingHorizontal: 20,
-    paddingVertical: 12,
-    borderRadius: 8,
-  },
-  buttonText: {
-    color: 'white',
-    fontSize: 16,
-    fontWeight: '600',
-  },
-});
+};
