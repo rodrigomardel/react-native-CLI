@@ -1,65 +1,71 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { RootStackParamList } from '../../types/navigation';
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
+import { TabParamList } from '../../types/navigation';
+import { globalStyles, globalColors } from '../theme/theme';
 
-type Props = NativeStackScreenProps<RootStackParamList, 'Home'>;
+type Props = BottomTabScreenProps<TabParamList, 'HomeTab'>;
 
 export const HomeScreen: React.FC<Props> = ({ navigation }) => {
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>¡Bienvenido a Mi App!</Text>
-      <Text style={styles.subtitle}>React Native 0.73.0 + React Navigation</Text>
+    <View style={globalStyles.container}>
+      <Text style={globalStyles.title}>🏠 Inicio</Text>
+      <Text style={globalStyles.subtitle}>Bienvenido a la aplicación</Text>
       
-      <TouchableOpacity 
-        style={styles.button}
-        onPress={() => navigation.navigate('Profile', { userId: '123' })}
-      >
-        <Text style={styles.buttonText}>Ir al Perfil</Text>
-      </TouchableOpacity>
-      
-      <TouchableOpacity 
-        style={styles.button}
-        onPress={() => navigation.navigate('Settings')}
-      >
-        <Text style={styles.buttonText}>Configuración</Text>
-      </TouchableOpacity>
+      <View style={styles.contentContainer}>
+        <Text style={styles.welcomeText}>
+          Esta es la pantalla principal de la aplicación con navegación por pestañas.
+        </Text>
+        
+        <View style={styles.featureList}>
+          <Text style={styles.featureTitle}>Características:</Text>
+          <Text style={styles.featureItem}>• Navegación por pestañas</Text>
+          <Text style={styles.featureItem}>• React Navigation 6</Text>
+          <Text style={styles.featureItem}>• Estilos globales</Text>
+          <Text style={styles.featureItem}>• TypeScript</Text>
+        </View>
+      </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
+  contentContainer: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#f5f5f5',
-    padding: 20,
+    paddingHorizontal: 20,
   },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 10,
-    color: '#333',
-  },
-  subtitle: {
+  welcomeText: {
     fontSize: 16,
-    color: '#666',
+    color: globalColors.text,
+    textAlign: 'center',
     marginBottom: 30,
-    textAlign: 'center',
+    lineHeight: 24,
   },
-  button: {
-    backgroundColor: '#007AFF',
-    paddingHorizontal: 30,
-    paddingVertical: 15,
+  featureList: {
+    backgroundColor: globalColors.background,
+    padding: 20,
     borderRadius: 10,
-    marginVertical: 10,
-    minWidth: 200,
+    shadowColor: globalColors.dark,
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.1,
+    shadowRadius: 3.84,
+    elevation: 5,
+    width: '100%',
   },
-  buttonText: {
-    color: 'white',
+  featureTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: globalColors.primary,
+    marginBottom: 15,
+  },
+  featureItem: {
     fontSize: 16,
-    fontWeight: '600',
-    textAlign: 'center',
+    color: globalColors.text,
+    marginVertical: 5,
   },
 });

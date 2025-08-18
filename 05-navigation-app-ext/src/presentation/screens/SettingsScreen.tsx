@@ -1,69 +1,102 @@
 import React from 'react';
-import {View, Text, StyleSheet, TouchableOpacity, Switch} from 'react-native';
-import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import {RootStackParamList} from '../../types/navigation';
+import { View, Text, StyleSheet, TouchableOpacity, Switch } from 'react-native';
+import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
+import { CompositeScreenProps } from '@react-navigation/native';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { TabParamList, RootStackParamList } from '../../types/navigation';
+import { globalStyles, globalColors } from '../theme/theme';
 
-type Props = NativeStackScreenProps<RootStackParamList, 'Settings'>;
+type Props = CompositeScreenProps<
+  BottomTabScreenProps<TabParamList, 'SettingsTab'>,
+  NativeStackScreenProps<RootStackParamList>
+>;
 
-export const SettingsScreen: React.FC<Props> = ({navigation}) => {
+export const SettingsScreen: React.FC<Props> = ({ navigation }) => {
   const [notificationsEnabled, setNotificationsEnabled] = React.useState(true);
   const [darkModeEnabled, setDarkModeEnabled] = React.useState(false);
+  const [biometricEnabled, setBiometricEnabled] = React.useState(true);
+  const [autoSyncEnabled, setAutoSyncEnabled] = React.useState(false);
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Configuración</Text>
+    <View style={globalStyles.container}>
+      <Text style={globalStyles.title}>⚙️ Configuración</Text>
+      <Text style={globalStyles.subtitle}>Personaliza tu experiencia</Text>
       
-      <View style={styles.settingContainer}>
-        <View style={styles.settingRow}>
-          <Text style={styles.settingText}>Notificaciones</Text>
-          <Switch
-            value={notificationsEnabled}
-            onValueChange={setNotificationsEnabled}
-            trackColor={{ false: '#767577', true: '#81b0ff' }}
-            thumbColor={notificationsEnabled ? '#007AFF' : '#f4f3f4'}
-          />
+      <View style={styles.settingsContainer}>
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>Notificaciones</Text>
+          <View style={styles.settingRow}>
+            <Text style={styles.settingText}>Notificaciones push</Text>
+            <Switch
+              value={notificationsEnabled}
+              onValueChange={setNotificationsEnabled}
+              trackColor={{ false: '#767577', true: globalColors.chassis }}
+              thumbColor={notificationsEnabled ? globalColors.primary : '#f4f3f4'}
+            />
+          </View>
         </View>
-        
-        <View style={styles.settingRow}>
-          <Text style={styles.settingText}>Modo Oscuro</Text>
-          <Switch
-            value={darkModeEnabled}
-            onValueChange={setDarkModeEnabled}
-            trackColor={{ false: '#767577', true: '#81b0ff' }}
-            thumbColor={darkModeEnabled ? '#007AFF' : '#f4f3f4'}
-          />
+
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>Apariencia</Text>
+          <View style={styles.settingRow}>
+            <Text style={styles.settingText}>Modo oscuro</Text>
+            <Switch
+              value={darkModeEnabled}
+              onValueChange={setDarkModeEnabled}
+              trackColor={{ false: '#767577', true: globalColors.chassis }}
+              thumbColor={darkModeEnabled ? globalColors.primary : '#f4f3f4'}
+            />
+          </View>
         </View>
+
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>Seguridad</Text>
+          <View style={styles.settingRow}>
+            <Text style={styles.settingText}>Autenticación biométrica</Text>
+            <Switch
+              value={biometricEnabled}
+              onValueChange={setBiometricEnabled}
+              trackColor={{ false: '#767577', true: globalColors.chassis }}
+              thumbColor={biometricEnabled ? globalColors.primary : '#f4f3f4'}
+            />
+          </View>
+        </View>
+
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>Sincronización</Text>
+          <View style={styles.settingRow}>
+            <Text style={styles.settingText}>Sincronización automática</Text>
+            <Switch
+              value={autoSyncEnabled}
+              onValueChange={setAutoSyncEnabled}
+              trackColor={{ false: '#767577', true: globalColors.chassis }}
+              thumbColor={autoSyncEnabled ? globalColors.primary : '#f4f3f4'}
+            />
+          </View>
+        </View>
+
+        <TouchableOpacity 
+          style={globalStyles.primaryButton}
+          onPress={() => navigation.navigate('Settings')}
+        >
+          <Text style={globalStyles.primaryButtonText}>Configuración Avanzada</Text>
+        </TouchableOpacity>
       </View>
-      
-      <TouchableOpacity 
-        style={styles.button}
-        onPress={() => navigation.goBack()}
-      >
-        <Text style={styles.buttonText}>Guardar y Volver</Text>
-      </TouchableOpacity>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
+  settingsContainer: {
     flex: 1,
-    backgroundColor: '#f5f5f5',
-    padding: 20,
+    paddingHorizontal: 20,
   },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 30,
-    color: '#333',
-    textAlign: 'center',
-  },
-  settingContainer: {
-    backgroundColor: 'white',
+  section: {
+    backgroundColor: globalColors.background,
     borderRadius: 10,
     padding: 20,
-    marginBottom: 30,
-    shadowColor: '#000',
+    marginBottom: 20,
+    shadowColor: globalColors.dark,
     shadowOffset: {
       width: 0,
       height: 2,
@@ -72,29 +105,20 @@ const styles = StyleSheet.create({
     shadowRadius: 3.84,
     elevation: 5,
   },
+  sectionTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: globalColors.primary,
+    marginBottom: 15,
+  },
   settingRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingVertical: 15,
-    borderBottomWidth: 1,
-    borderBottomColor: '#f0f0f0',
+    paddingVertical: 10,
   },
   settingText: {
     fontSize: 16,
-    color: '#333',
-  },
-  button: {
-    backgroundColor: '#007AFF',
-    paddingHorizontal: 30,
-    paddingVertical: 15,
-    borderRadius: 10,
-    alignSelf: 'center',
-  },
-  buttonText: {
-    color: 'white',
-    fontSize: 16,
-    fontWeight: '600',
-    textAlign: 'center',
+    color: globalColors.text,
   },
 });

@@ -1,60 +1,100 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
+import { CompositeScreenProps } from '@react-navigation/native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { RootStackParamList } from '../../types/navigation';
+import { TabParamList, RootStackParamList } from '../../types/navigation';
+import { globalStyles, globalColors } from '../theme/theme';
 
-type Props = NativeStackScreenProps<RootStackParamList, 'Profile'>;
+type Props = CompositeScreenProps<
+  BottomTabScreenProps<TabParamList, 'ProfileTab'>,
+  NativeStackScreenProps<RootStackParamList>
+>;
 
-export const ProfileScreen: React.FC<Props> = ({ navigation, route }) => {
-  const { userId } = route.params;
-
+export const ProfileScreen: React.FC<Props> = ({ navigation }) => {
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Perfil del Usuario</Text>
-      <Text style={styles.subtitle}>ID: {userId}</Text>
+    <View style={globalStyles.container}>
+      <Text style={globalStyles.title}>👤 Perfil</Text>
+      <Text style={globalStyles.subtitle}>Información del usuario</Text>
       
-      <View style={styles.infoContainer}>
-        <Text style={styles.infoText}>Nombre: Juan Pérez</Text>
-        <Text style={styles.infoText}>Email: juan@example.com</Text>
-        <Text style={styles.infoText}>Edad: 25 años</Text>
+      <View style={styles.profileContainer}>
+        <View style={styles.avatarContainer}>
+          <Text style={styles.avatar}>👤</Text>
+        </View>
+        
+        <View style={styles.userInfo}>
+          <Text style={styles.userName}>Juan Pérez</Text>
+          <Text style={styles.userEmail}>juan.perez@email.com</Text>
+          <Text style={styles.userRole}>Desarrollador React Native</Text>
+        </View>
+        
+        <View style={styles.statsContainer}>
+          <View style={styles.statItem}>
+            <Text style={styles.statNumber}>25</Text>
+            <Text style={styles.statLabel}>Proyectos</Text>
+          </View>
+          <View style={styles.statItem}>
+            <Text style={styles.statNumber}>150</Text>
+            <Text style={styles.statLabel}>Commits</Text>
+          </View>
+          <View style={styles.statItem}>
+            <Text style={styles.statNumber}>3</Text>
+            <Text style={styles.statLabel}>Años</Text>
+          </View>
+        </View>
+        
+        <TouchableOpacity 
+          style={globalStyles.primaryButton}
+          onPress={() => navigation.navigate('Profile', { userId: '123' })}
+        >
+          <Text style={globalStyles.primaryButtonText}>Ver Perfil Detallado</Text>
+        </TouchableOpacity>
       </View>
-      
-      <TouchableOpacity 
-        style={styles.button}
-        onPress={() => navigation.goBack()}
-      >
-        <Text style={styles.buttonText}>Volver</Text>
-      </TouchableOpacity>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
+  profileContainer: {
     flex: 1,
-    justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#f5f5f5',
-    padding: 20,
+    paddingHorizontal: 20,
   },
-  title: {
+  avatarContainer: {
+    marginVertical: 30,
+  },
+  avatar: {
+    fontSize: 80,
+    textAlign: 'center',
+  },
+  userInfo: {
+    alignItems: 'center',
+    marginBottom: 30,
+  },
+  userName: {
     fontSize: 24,
     fontWeight: 'bold',
-    marginBottom: 10,
-    color: '#333',
+    color: globalColors.primary,
+    marginBottom: 5,
   },
-  subtitle: {
+  userEmail: {
     fontSize: 16,
-    color: '#666',
-    marginBottom: 30,
+    color: globalColors.text,
+    marginBottom: 5,
   },
-  infoContainer: {
-    backgroundColor: 'white',
+  userRole: {
+    fontSize: 14,
+    color: globalColors.secondary,
+  },
+  statsContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    width: '100%',
+    marginBottom: 30,
+    backgroundColor: globalColors.background,
     padding: 20,
     borderRadius: 10,
-    marginBottom: 30,
-    width: '100%',
-    shadowColor: '#000',
+    shadowColor: globalColors.dark,
     shadowOffset: {
       width: 0,
       height: 2,
@@ -63,22 +103,17 @@ const styles = StyleSheet.create({
     shadowRadius: 3.84,
     elevation: 5,
   },
-  infoText: {
-    fontSize: 16,
-    marginVertical: 5,
-    color: '#333',
+  statItem: {
+    alignItems: 'center',
   },
-  button: {
-    backgroundColor: '#007AFF',
-    paddingHorizontal: 30,
-    paddingVertical: 15,
-    borderRadius: 10,
-    minWidth: 200,
+  statNumber: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: globalColors.primary,
   },
-  buttonText: {
-    color: 'white',
-    fontSize: 16,
-    fontWeight: '600',
-    textAlign: 'center',
+  statLabel: {
+    fontSize: 12,
+    color: globalColors.text,
+    marginTop: 5,
   },
 });
