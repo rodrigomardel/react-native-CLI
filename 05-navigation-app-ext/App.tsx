@@ -10,7 +10,7 @@ import { AppNavigator } from './src/presentation/navigation/AppNavigator';
 function App(): React.JSX.Element {
   return (
     <>
-      <StatusBar barStyle="light-content" backgroundColor="#007AFF" />
+      <StatusBar barStyle="light-content" />
       <AppNavigator />
     </>
   );

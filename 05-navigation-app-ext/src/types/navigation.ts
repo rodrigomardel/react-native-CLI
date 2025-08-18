@@ -1,5 +1,5 @@
 export type RootStackParamList = {
-  Home: undefined;
+  Main: undefined;
   Profile: { userId: string };
   Settings: undefined;
   Details: { itemId: string };
