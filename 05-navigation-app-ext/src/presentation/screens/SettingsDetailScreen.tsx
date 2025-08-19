@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, TouchableOpacity, Switch, ScrollView } from 're
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../types/navigation';
 import { globalStyles, globalColors } from '../theme/theme';
+import PrimaryButton from '../components/shared/PrimaryButton';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Settings'>;
 
@@ -18,9 +19,6 @@ export const SettingsDetailScreen: React.FC<Props> = ({ navigation }) => {
 
   return (
     <ScrollView style={globalStyles.container}>
-      <Text style={globalStyles.title}>⚙️ Configuración Avanzada</Text>
-      <Text style={globalStyles.subtitle}>Personalización completa</Text>
-      
       <View style={styles.settingsContainer}>
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Notificaciones</Text>
@@ -154,12 +152,7 @@ export const SettingsDetailScreen: React.FC<Props> = ({ navigation }) => {
           </View>
         </View>
 
-        <TouchableOpacity 
-          style={globalStyles.primaryButton}
-          onPress={() => navigation.goBack()}
-        >
-          <Text style={globalStyles.primaryButtonText}>Guardar y Volver</Text>
-        </TouchableOpacity>
+        <PrimaryButton title="Guardar y Volver" icon="keyboard-return" onPress={() => navigation.goBack()} />
       </View>
     </ScrollView>
   );
@@ -169,6 +162,7 @@ const styles = StyleSheet.create({
   settingsContainer: {
     flex: 1,
     paddingHorizontal: 20,
+    paddingBottom: 40,
   },
   section: {
     backgroundColor: globalColors.background,

@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-nati
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../types/navigation';
 import { globalStyles, globalColors } from '../theme/theme';
+import PrimaryButton from '../components/shared/PrimaryButton';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Profile'>;
 
@@ -11,44 +12,34 @@ export const ProfileDetailScreen: React.FC<Props> = ({ navigation, route }) => {
 
   return (
     <ScrollView style={globalStyles.container}>
-      <Text style={globalStyles.title}>👤 Perfil Detallado</Text>
-      <Text style={globalStyles.subtitle}>ID de usuario: {userId}</Text>
-      
       <View style={styles.detailContainer}>
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Información Personal</Text>
           <View style={styles.infoRow}>
             <Text style={styles.label}>Nombre:</Text>
-            <Text style={styles.value}>Juan Pérez</Text>
+            <Text style={styles.value}>Rodrigo Martínez Delgado</Text>
           </View>
           <View style={styles.infoRow}>
             <Text style={styles.label}>Email:</Text>
-            <Text style={styles.value}>juan.perez@email.com</Text>
+            <Text style={styles.value}>rodrigo.mardel.daw@gmail.com</Text>
           </View>
           <View style={styles.infoRow}>
             <Text style={styles.label}>Teléfono:</Text>
-            <Text style={styles.value}>+34 123 456 789</Text>
+            <Text style={styles.value}>+34 666 666 666</Text>
           </View>
           <View style={styles.infoRow}>
             <Text style={styles.label}>Ubicación:</Text>
-            <Text style={styles.value}>Madrid, España</Text>
+            <Text style={styles.value}>Burgos, España</Text>
           </View>
-        </View>
+        </View> 
 
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Experiencia Profesional</Text>
           <View style={styles.experienceItem}>
-            <Text style={styles.jobTitle}>Desarrollador Senior React Native</Text>
+            <Text style={styles.jobTitle}>Full Stack Developer</Text>
             <Text style={styles.company}>TechCorp - 2021 - Presente</Text>
             <Text style={styles.description}>
               Desarrollo de aplicaciones móviles multiplataforma con React Native.
-            </Text>
-          </View>
-          <View style={styles.experienceItem}>
-            <Text style={styles.jobTitle}>Desarrollador Frontend</Text>
-            <Text style={styles.company}>WebSolutions - 2019 - 2021</Text>
-            <Text style={styles.description}>
-              Desarrollo de aplicaciones web con React y TypeScript.
             </Text>
           </View>
         </View>
@@ -57,20 +48,26 @@ export const ProfileDetailScreen: React.FC<Props> = ({ navigation, route }) => {
           <Text style={styles.sectionTitle}>Habilidades Técnicas</Text>
           <View style={styles.skillsContainer}>
             <Text style={styles.skill}>React Native</Text>
-            <Text style={styles.skill}>React</Text>
             <Text style={styles.skill}>TypeScript</Text>
             <Text style={styles.skill}>JavaScript</Text>
-            <Text style={styles.skill}>Node.js</Text>
             <Text style={styles.skill}>Git</Text>
+            <Text style={styles.skill}>Angular</Text>
+            <Text style={styles.skill}>Bootstrap</Text>
+            <Text style={styles.skill}>Spring Boot</Text>
+            <Text style={styles.skill}>MySQL</Text>
+            <Text style={styles.skill}>Docker</Text>
+            <Text style={styles.skill}>Git</Text>
+            <Text style={styles.skill}>GitHub</Text>  
           </View>
         </View>
 
-        <TouchableOpacity 
+        {/* <TouchableOpacity 
           style={globalStyles.primaryButton}
           onPress={() => navigation.goBack()}
         >
           <Text style={globalStyles.primaryButtonText}>Volver</Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
+        <PrimaryButton title="Volver" icon="keyboard-return" onPress={() => navigation.goBack()} />
       </View>
     </ScrollView>
   );
@@ -80,6 +77,7 @@ const styles = StyleSheet.create({
   detailContainer: {
     flex: 1,
     paddingHorizontal: 20,
+    paddingBottom: 40,
   },
   section: {
     backgroundColor: globalColors.background,
@@ -116,7 +114,7 @@ const styles = StyleSheet.create({
   },
   value: {
     fontSize: 16,
-    color: globalColors.secondary,
+    color: globalColors.primary,
   },
   experienceItem: {
     marginBottom: 20,

@@ -9,20 +9,17 @@ type Props = BottomTabScreenProps<TabParamList, 'HomeTab'>;
 export const HomeScreen: React.FC<Props> = ({ navigation }) => {
   return (
     <View style={globalStyles.container}>
-      <Text style={globalStyles.title}>🏠 Inicio</Text>
-      <Text style={globalStyles.subtitle}>Bienvenido a la aplicación</Text>
       
       <View style={styles.contentContainer}>
-        <Text style={styles.welcomeText}>
-          Esta es la pantalla principal de la aplicación con navegación por pestañas.
-        </Text>
-        
         <View style={styles.featureList}>
           <Text style={styles.featureTitle}>Características:</Text>
-          <Text style={styles.featureItem}>• Navegación por pestañas</Text>
-          <Text style={styles.featureItem}>• React Navigation 6</Text>
-          <Text style={styles.featureItem}>• Estilos globales</Text>
-          <Text style={styles.featureItem}>• TypeScript</Text>
+          <Text style={styles.featureItem}>• react-native v0.73.0</Text>
+          <Text style={styles.featureItem}>• react-native-paper v5.14.5</Text>
+          <Text style={styles.featureItem}>• react-native-vector-icons v12.2.0</Text>
+          <Text style={styles.featureItem}>• react-native-screens v3.27.0</Text>
+          <Text style={styles.featureItem}>• @react-navigation/native v6.1.9</Text>
+          <Text style={styles.featureItem}>• @react-native-vector-icons/fontawesome6 v12.2.0</Text>
+          <Text style={styles.featureItem}>• react-native-paper v5.14.5</Text>
         </View>
       </View>
     </View>

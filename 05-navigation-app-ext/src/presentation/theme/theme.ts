@@ -4,7 +4,7 @@ export const globalColors = {
   primary: '#7B1FA2',
   secondary: '#FF5252',
   tertiary: '#0D47A1',
-  chassis: '#81D4FA',
+  chassis: '#C27FE8',
   warning: '#FFEB3B',
   danger: '#D32F2F',
   dark: '#000000',
@@ -20,7 +20,7 @@ export const globalStyles = StyleSheet.create({
   },
   title: {
     color: globalColors.primary,
-    fontSize: 24,
+    fontSize: 30,
     fontWeight: 'bold',
     marginBottom: 10,
   },

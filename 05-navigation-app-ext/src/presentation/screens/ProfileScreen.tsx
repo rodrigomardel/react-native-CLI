@@ -5,6 +5,8 @@ import { CompositeScreenProps } from '@react-navigation/native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { TabParamList, RootStackParamList } from '../../types/navigation';
 import { globalStyles, globalColors } from '../theme/theme';
+import PrimaryButton from '../components/shared/PrimaryButton';
+import { FontAwesome6 } from '@react-native-vector-icons/fontawesome6';
 
 type Props = CompositeScreenProps<
   BottomTabScreenProps<TabParamList, 'ProfileTab'>,
@@ -14,23 +16,21 @@ type Props = CompositeScreenProps<
 export const ProfileScreen: React.FC<Props> = ({ navigation }) => {
   return (
     <View style={globalStyles.container}>
-      <Text style={globalStyles.title}>👤 Perfil</Text>
-      <Text style={globalStyles.subtitle}>Información del usuario</Text>
       
       <View style={styles.profileContainer}>
         <View style={styles.avatarContainer}>
-          <Text style={styles.avatar}>👤</Text>
+          <FontAwesome6 name="user" size={80} color={globalColors.primary} />
         </View>
         
         <View style={styles.userInfo}>
-          <Text style={styles.userName}>Juan Pérez</Text>
-          <Text style={styles.userEmail}>juan.perez@email.com</Text>
-          <Text style={styles.userRole}>Desarrollador React Native</Text>
+          <Text style={styles.userName}>Rodrigo Martínez Delgado</Text>
+          <Text style={styles.userEmail}>rodrigo.mardel.daw@gmail.com</Text>
+          <Text style={styles.userRole}>Jr. Full Stack Developer</Text>
         </View>
         
         <View style={styles.statsContainer}>
           <View style={styles.statItem}>
-            <Text style={styles.statNumber}>25</Text>
+            <Text style={styles.statNumber}>3</Text>
             <Text style={styles.statLabel}>Proyectos</Text>
           </View>
           <View style={styles.statItem}>
@@ -38,17 +38,11 @@ export const ProfileScreen: React.FC<Props> = ({ navigation }) => {
             <Text style={styles.statLabel}>Commits</Text>
           </View>
           <View style={styles.statItem}>
-            <Text style={styles.statNumber}>3</Text>
+            <Text style={styles.statNumber}>2</Text>
             <Text style={styles.statLabel}>Años</Text>
           </View>
         </View>
-        
-        <TouchableOpacity 
-          style={globalStyles.primaryButton}
-          onPress={() => navigation.navigate('Profile', { userId: '123' })}
-        >
-          <Text style={globalStyles.primaryButtonText}>Ver Perfil Detallado</Text>
-        </TouchableOpacity>
+        <PrimaryButton title="Ver Perfil Detallado" icon="file-account" onPress={() => navigation.navigate('Profile', { userId: '123' })} />
       </View>
     </View>
   );
@@ -84,7 +78,7 @@ const styles = StyleSheet.create({
   },
   userRole: {
     fontSize: 14,
-    color: globalColors.secondary,
+    color: globalColors.primary,
   },
   statsContainer: {
     flexDirection: 'row',

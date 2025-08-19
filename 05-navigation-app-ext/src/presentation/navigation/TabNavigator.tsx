@@ -32,13 +32,17 @@ export const TabNavigator: React.FC = () => {
         headerTintColor: globalColors.background,
         headerTitleStyle: {
           fontWeight: 'bold',
+          fontSize: 28,
+          textAlign: 'center',
         },
+        headerTitleAlign: 'center',
       }}
     >
       <Tab.Screen
         name="HomeTab"
         component={HomeScreen}
         options={{
+          headerTitle: 'Inicio',
           tabBarIcon: ({ color, size }) => (
             <FontAwesome6 
               name="house" 
@@ -53,6 +57,7 @@ export const TabNavigator: React.FC = () => {
         name="ProfileTab"
         component={ProfileScreen}
         options={{
+          headerTitle: 'Perfil',
           tabBarIcon: ({ color, size }) => (
             <FontAwesome6 
               name="user" 
@@ -67,6 +72,7 @@ export const TabNavigator: React.FC = () => {
         name="SettingsTab"
         component={SettingsScreen}
         options={{
+          headerTitle: 'Configuración',
           tabBarIcon: ({ color, size }) => (
             <FontAwesome6 
               name="gear" 

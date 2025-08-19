@@ -5,6 +5,7 @@ import { CompositeScreenProps } from '@react-navigation/native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { TabParamList, RootStackParamList } from '../../types/navigation';
 import { globalStyles, globalColors } from '../theme/theme';
+import PrimaryButton from '../components/shared/PrimaryButton';
 
 type Props = CompositeScreenProps<
   BottomTabScreenProps<TabParamList, 'SettingsTab'>,
@@ -19,8 +20,6 @@ export const SettingsScreen: React.FC<Props> = ({ navigation }) => {
 
   return (
     <View style={globalStyles.container}>
-      <Text style={globalStyles.title}>⚙️ Configuración</Text>
-      <Text style={globalStyles.subtitle}>Personaliza tu experiencia</Text>
       
       <View style={styles.settingsContainer}>
         <View style={styles.section}>
@@ -74,13 +73,7 @@ export const SettingsScreen: React.FC<Props> = ({ navigation }) => {
             />
           </View>
         </View>
-
-        <TouchableOpacity 
-          style={globalStyles.primaryButton}
-          onPress={() => navigation.navigate('Settings')}
-        >
-          <Text style={globalStyles.primaryButtonText}>Configuración Avanzada</Text>
-        </TouchableOpacity>
+        <PrimaryButton title="Configuración Avanzada" icon="cog" onPress={() => navigation.navigate('Settings')} />
       </View>
     </View>
   );
