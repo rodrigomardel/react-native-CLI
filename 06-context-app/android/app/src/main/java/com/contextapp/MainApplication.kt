@@ -1,4 +1,4 @@
-package com.contextappzustand
+package com.contextapp
 
 import android.app.Application
 import com.facebook.react.PackageList
