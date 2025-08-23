@@ -15,6 +15,23 @@ export interface NowPlayingResponse {
 }
 
 /**
+ * Complete TMDB API response for popular movies
+ */
+export interface MovieDBMoviesResponse {
+  /** Current page number */
+  page:          number;
+  /** List of popular movies */
+  results:       Result[];
+  /** Total number of available pages */
+  total_pages:   number;
+  /** Total number of available results */
+  total_results: number;
+}
+
+
+
+
+/**
  * Movie availability dates
  */
 export interface Dates {
