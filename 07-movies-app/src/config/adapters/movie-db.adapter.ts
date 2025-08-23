@@ -1,5 +1,9 @@
 import { AxiosAdapter } from "./http/axios.adapter";
 
+/**
+ * Configured HTTP adapter instance to connect to TMDB API
+ * Includes base URL, API key and default language configuration
+ */
 export const movieDbAdapter = new AxiosAdapter({
   baseUrl: 'https://api.themoviedb.org/3/movie',
   params: {
