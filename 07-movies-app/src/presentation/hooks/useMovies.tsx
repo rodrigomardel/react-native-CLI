@@ -19,5 +19,5 @@ export const useMovies = () => {
     const nowPlayingMovies = await UseCases.nowPlayingUseCase(movieDbAdapter);
   }
 
-  return { };
+  return { nowPlayingMovies, isLoading };
 };
